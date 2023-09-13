@@ -1,0 +1,10 @@
+<!-- Inspiration: https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2022 -->
+<Project>
+
+	<PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(VersionPrefix)', '(alpha|alfa)')) ">
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<LocalPackageOutputPathXlent Condition="'$(LocalPackageOutputPathXlent)'==''">c:\dev\local-nugets</LocalPackageOutputPathXlent>
+		<PackageOutputPath>$(LocalPackageOutputPathXlent)</PackageOutputPath>
+	</PropertyGroup>
+
+</Project>

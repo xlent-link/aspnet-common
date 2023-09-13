@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "commons", "src\commons\commons.csproj", "{919336E6-1CF3-495D-A4C6-B0813F918525}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E95AA4E-4BBE-46B8-BAF3-BC99162DC431}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{437ABEC9-429D-435E-AAAD-4EEF6FBD5F63}"
+	ProjectSection(SolutionItems) = preProject
+		dotnetbuild\local-nugets.props = dotnetbuild\local-nugets.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{919336E6-1CF3-495D-A4C6-B0813F918525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{919336E6-1CF3-495D-A4C6-B0813F918525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{919336E6-1CF3-495D-A4C6-B0813F918525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{919336E6-1CF3-495D-A4C6-B0813F918525}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{437ABEC9-429D-435E-AAAD-4EEF6FBD5F63} = {3E95AA4E-4BBE-46B8-BAF3-BC99162DC431}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B05DFED-137F-4740-BE6E-7A5156C7C9B6}
+	EndGlobalSection
+EndGlobal
