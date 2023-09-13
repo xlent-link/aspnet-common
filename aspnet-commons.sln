@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{437ABEC9
 		dotnetbuild\local-nugets.props = dotnetbuild\local-nugets.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "test\UnitTests\UnitTests.csproj", "{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{919336E6-1CF3-495D-A4C6-B0813F918525}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{919336E6-1CF3-495D-A4C6-B0813F918525}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{919336E6-1CF3-495D-A4C6-B0813F918525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
