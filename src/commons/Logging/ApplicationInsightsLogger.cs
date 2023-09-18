@@ -7,10 +7,10 @@ using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using XlentLink.Commons.Context;
-using XlentLink.Commons.Startup;
+using XlentLink.AspNet.Common.Context;
+using XlentLink.AspNet.Common.Startup;
 
-namespace XlentLink.Commons.Logging;
+namespace XlentLink.AspNet.Common.Logging;
 
 public class ApplicationInsightsLoggerFactory : ISyncLoggerFactory
 {

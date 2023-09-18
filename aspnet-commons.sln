@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "commons", "src\commons\commons.csproj", "{919336E6-1CF3-495D-A4C6-B0813F918525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "common", "src\commons\common.csproj", "{919336E6-1CF3-495D-A4C6-B0813F918525}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E95AA4E-4BBE-46B8-BAF3-BC99162DC431}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{437ABEC9
 		dotnetbuild\local-nugets.props = dotnetbuild\local-nugets.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "test\UnitTests\UnitTests.csproj", "{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "test\UnitTests\UnitTests.csproj", "{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

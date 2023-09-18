@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace XlentLink.Commons.Health;
+namespace XlentLink.AspNet.Common.Health;
 
 /// <summary>
 /// A mimic of the standard <see cref="HealthReport"/>, so that we can serialize it.

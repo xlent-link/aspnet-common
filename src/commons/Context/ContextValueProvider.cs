@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace XlentLink.Commons.Context;
+namespace XlentLink.AspNet.Common.Context;
 
 public interface IContextValueProvider
 {

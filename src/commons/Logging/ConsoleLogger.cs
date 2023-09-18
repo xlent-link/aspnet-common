@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
 using Microsoft.Extensions.Logging;
-using XlentLink.Commons.Context;
+using XlentLink.AspNet.Common.Context;
 
-namespace XlentLink.Commons.Logging;
+namespace XlentLink.AspNet.Common.Logging;
 
 public class ConsoleLoggerFactory : ISyncLoggerFactory
 {

@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		
-		<RootNamespace>XlentLink.Commons</RootNamespace>
+		<RootNamespace>XlentLink.AspNet.Common</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -29,7 +29,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>XlentLink.Commons</PackageId>
+		<PackageId>XlentLink.AspNet.Common</PackageId>
 		<VersionPrefix>1.0.0</VersionPrefix>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Authors>XLENT Link</Authors>

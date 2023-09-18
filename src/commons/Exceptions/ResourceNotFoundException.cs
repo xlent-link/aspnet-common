@@ -1,4 +1,4 @@
-﻿namespace XlentLink.Commons.Exceptions;
+﻿namespace XlentLink.AspNet.Common.Exceptions;
 
 public class ResourceNotFoundException : Exception
 {

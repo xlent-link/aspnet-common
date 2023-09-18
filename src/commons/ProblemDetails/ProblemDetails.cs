@@ -1,4 +1,4 @@
-﻿namespace XlentLink.Commons.ProblemDetails;
+﻿namespace XlentLink.AspNet.Common.ProblemDetails;
 
 /// <summary>
 /// A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.

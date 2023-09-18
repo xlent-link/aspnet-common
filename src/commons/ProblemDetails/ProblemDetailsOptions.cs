@@ -1,4 +1,4 @@
-﻿namespace XlentLink.Commons.ProblemDetails;
+﻿namespace XlentLink.AspNet.Common.ProblemDetails;
 
 public class ProblemDetailsOptions
 {

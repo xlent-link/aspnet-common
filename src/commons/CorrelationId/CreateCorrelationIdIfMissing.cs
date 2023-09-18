@@ -2,9 +2,9 @@ using System.Net;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.Functions.Worker.Middleware;
-using XlentLink.Commons.Context;
+using XlentLink.AspNet.Common.Context;
 
-namespace XlentLink.Commons.CorrelationId;
+namespace XlentLink.AspNet.Common.CorrelationId;
 
 public class CreateCorrelationIdIfMissing : IFunctionsWorkerMiddleware
 {

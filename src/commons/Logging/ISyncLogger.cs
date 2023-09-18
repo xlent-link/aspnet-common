@@ -1,4 +1,4 @@
-﻿namespace XlentLink.Commons.Logging;
+﻿namespace XlentLink.AspNet.Common.Logging;
 
 public interface ISyncLoggerFactory
 {

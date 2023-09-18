@@ -1,4 +1,4 @@
-﻿namespace XlentLink.Commons.Startup;
+﻿namespace XlentLink.AspNet.Common.Startup;
 
 public class ComponentSettings
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace XlentLink.Commons.Logging;
+namespace XlentLink.AspNet.Common.Logging;
 
 public abstract class AbstractSyncLogger : ISyncLogger
 {

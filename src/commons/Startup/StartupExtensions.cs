@@ -6,12 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using XlentLink.Commons.Context;
-using XlentLink.Commons.CorrelationId;
-using XlentLink.Commons.Exceptions;
-using XlentLink.Commons.ProblemDetails;
+using XlentLink.AspNet.Common.Context;
+using XlentLink.AspNet.Common.CorrelationId;
+using XlentLink.AspNet.Common.Exceptions;
+using XlentLink.AspNet.Common.ProblemDetails;
 
-namespace XlentLink.Commons.Startup;
+namespace XlentLink.AspNet.Common.Startup;
 
 public static class StartupExtensions
 {

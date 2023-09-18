@@ -8,7 +8,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace XlentLink.Commons.Health;
+namespace XlentLink.AspNet.Common.Health;
 
 /// <summary>
 /// Inherit from this class to setup health checking in your function app

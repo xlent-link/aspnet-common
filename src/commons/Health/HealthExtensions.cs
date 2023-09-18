@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using XlentLink.Commons.Startup;
+using XlentLink.AspNet.Common.Startup;
 
-namespace XlentLink.Commons.Health;
+namespace XlentLink.AspNet.Common.Health;
 
 public static class HealthExtensions
 {

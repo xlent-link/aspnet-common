@@ -3,11 +3,11 @@ using System.Security.Authentication;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.Functions.Worker.Middleware;
-using XlentLink.Commons.Context;
-using XlentLink.Commons.Exceptions;
-using XlentLink.Commons.Logging;
+using XlentLink.AspNet.Common.Context;
+using XlentLink.AspNet.Common.Exceptions;
+using XlentLink.AspNet.Common.Logging;
 
-namespace XlentLink.Commons.ProblemDetails;
+namespace XlentLink.AspNet.Common.ProblemDetails;
 
 public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
 {
