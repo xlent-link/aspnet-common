@@ -10,11 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{437ABEC9-429D-435E-AAAD-4EEF6FBD5F63}"
-	ProjectSection(SolutionItems) = preProject
-		dotnetbuild\local-nugets.props = dotnetbuild\local-nugets.props
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "test\UnitTests\UnitTests.csproj", "{7D92ADA3-6F3E-417E-BEEC-7703113C65D8}"
 EndProject
 Global
@@ -34,9 +29,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{437ABEC9-429D-435E-AAAD-4EEF6FBD5F63} = {3E95AA4E-4BBE-46B8-BAF3-BC99162DC431}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B05DFED-137F-4740-BE6E-7A5156C7C9B6}
