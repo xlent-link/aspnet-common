@@ -75,12 +75,14 @@ public class BridgeRestClient : IBridgeRestClient
         await VerifyResponseAsync(url, response, cancellationToken);
     }
 
-    private static async Task VerifyResponseAsync(string url, HttpResponseMessage response, CancellationToken cancellationToken)
+    private async Task VerifyResponseAsync(string url, HttpResponseMessage response, CancellationToken cancellationToken)
     {
         if (!response.IsSuccessStatusCode)
         {
             var responseMessage = await response.Content.ReadAsStringAsync(cancellationToken);
-            throw new UnsuccessfulHttpResponseException(url, response.StatusCode, responseMessage);
+            _httpClient.BaseAddress ??= new Uri("https://example.com/");
+            var fullUrl = $"{_httpClient.BaseAddress}{(_httpClient.BaseAddress.ToString().EndsWith("/") ? "" : "/")}{(url.StartsWith("/") ? url[1..] : url)}";
+            throw new UnsuccessfulHttpResponseException(fullUrl, response.StatusCode, responseMessage);
         }
     }
 
