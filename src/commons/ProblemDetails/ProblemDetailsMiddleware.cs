@@ -94,6 +94,13 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
 
         // TODO: Maybe 429 Too many requests?
 
+        else if (e is UnsuccessfulHttpResponseException)
+        {
+            problemDetails.Status = 502;
+            problemDetails.Title = "Bad gateway";
+            problemDetails.Type = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502";
+        }
+
         // Everything else is considered Internal Server Error
         else
         {
