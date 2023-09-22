@@ -52,8 +52,8 @@ public static class StartupExtensions
 
     public static void UseStandardMiddleware(this IFunctionsWorkerApplicationBuilder app)
     {
-        app.UseMiddleware<ProblemDetailsMiddleware>();
-        app.UseMiddleware<CreateCorrelationIdIfMissing>();
+        app.UseMiddleware<CreateCorrelationIdIfMissing>(); // Should be one of the first
+        app.UseMiddleware<ProblemDetailsMiddleware>();     // Depends on correlation id
     }
 
     /// <summary>
