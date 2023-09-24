@@ -19,7 +19,7 @@ public class CreateCorrelationIdIfMissing : IFunctionsWorkerMiddleware
     {
         var request = await context.GetHttpRequestDataAsync();
         string? correlationId = null;
-        if (request != null && request.Headers.TryGetValues("X-Correlation-ID", out var headerValues))
+        if (request != null && request.Headers.TryGetValues(CorrelationIdConstants.HeaderName, out var headerValues))
         {
             correlationId = headerValues.FirstOrDefault();
         }
@@ -37,6 +37,6 @@ public class CreateCorrelationIdIfMissing : IFunctionsWorkerMiddleware
 
         await next.Invoke(context);
 
-        context.GetHttpResponseData()?.Headers.Add("X-Correlation-ID", correlationId);
+        context.GetHttpResponseData()?.Headers.Add(CorrelationIdConstants.HeaderName, correlationId);
     }
 }
