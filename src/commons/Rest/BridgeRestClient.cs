@@ -4,8 +4,11 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Unicode;
+using Microsoft.Extensions.DependencyInjection;
 using Nexus.Link.Bridge.Plugin.CSharp.Target.Abstract.Rest;
 using XlentLink.AspNet.Common.Exceptions;
+using JsonException = System.Text.Json.JsonException;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace XlentLink.AspNet.Common.Rest;
 
@@ -32,6 +35,7 @@ public class BridgeRestClient : IBridgeRestClient
         Converters = { new JsonStringEnumConverter() }
     };
 
+    [ActivatorUtilitiesConstructor] // When using DI, this is the constructor to use
     public BridgeRestClient(HttpClient httpClient) : this(httpClient, DefaultSerializeOptions, DefaultDeserializeOptions)
     {
     }
@@ -92,8 +96,17 @@ public class BridgeRestClient : IBridgeRestClient
 
         var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (responseContent == null!) return default!;
-        
-        var result = JsonSerializer.Deserialize<T>(responseContent, _deserializeOptions);
-        return result ?? default!;
+
+        T? result = default!;
+        try
+        {
+            result = JsonSerializer.Deserialize<T>(responseContent, _deserializeOptions);
+        }
+        catch (JsonException)
+        {
+            // The responseContent was not valid JSON
+            // This will result in returning default
+        }
+        return result!;
     }
 }
