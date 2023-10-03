@@ -54,10 +54,16 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
             });
 
             var request = await context.GetHttpRequestDataAsync();
-            var response = request!.CreateResponse((HttpStatusCode)problemDetails.Status);
-            await response.WriteAsJsonAsync(problemDetails);
-            context.GetInvocationResult().Value = response;
-            if (context.GetHttpResponseData() != null) context.GetHttpResponseData()!.StatusCode = (HttpStatusCode)problemDetails.Status;
+            if (request != null)
+            {
+                var response = request.CreateResponse((HttpStatusCode)problemDetails.Status);
+                await response.WriteAsJsonAsync(problemDetails);
+                context.GetInvocationResult().Value = response;
+                if (context.GetHttpResponseData() != null)
+                {
+                    context.GetHttpResponseData()!.StatusCode = (HttpStatusCode)problemDetails.Status;
+                }
+            }
         }
     }
 
