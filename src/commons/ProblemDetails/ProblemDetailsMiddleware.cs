@@ -31,7 +31,7 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
         }
         catch (Exception e)
         {
-            if (e is AggregateException) e = e.InnerException!;
+            if (e is AggregateException { InnerException: not null }) e = e.InnerException!;
 
             // Setup by other middleware
             var correlationId = _contextValueProvider.CorrelationId ?? "unknown";
