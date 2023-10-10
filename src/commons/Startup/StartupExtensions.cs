@@ -1,7 +1,4 @@
 ﻿using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Abstractions;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Configurations;
-using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -54,27 +51,5 @@ public static class StartupExtensions
     {
         app.UseMiddleware<CreateCorrelationIdIfMissing>(); // Should be one of the first
         app.UseMiddleware<ProblemDetailsMiddleware>();     // Depends on correlation id
-    }
-
-    /// <summary>
-    /// Adds support for Open API/Swagger
-    /// </summary>
-    public static IServiceCollection AddOpenApi(this IServiceCollection services, string title, string version)
-    {
-        services.AddSingleton<IOpenApiConfigurationOptions>(_ =>
-        {
-            var options = new DefaultOpenApiConfigurationOptions
-            {
-                OpenApiVersion = OpenApiVersionType.V3,
-                Info = new()
-                {
-                    Title = title,
-                    Version = version
-                }
-            };
-            return options;
-        });
-
-        return services;
     }
 }
