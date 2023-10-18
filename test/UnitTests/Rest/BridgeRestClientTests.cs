@@ -15,7 +15,8 @@ public class BridgeRestClientTests
 
     #region Helpers
 
-    private static BridgeRestClient CreateHttpClientWithResponse(HttpResponseMessage response, Action<HttpRequestMessage, CancellationToken>? callback = null)
+    private static BridgeRestClient CreateHttpClientWithResponse(HttpResponseMessage response, 
+        Action<HttpRequestMessage, CancellationToken>? callback = null, string? baseUrl = null)
     {
         var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
         var mockSetup = handlerMock
@@ -32,7 +33,7 @@ public class BridgeRestClientTests
         }
         mockSetup.ReturnsAsync(response);
 
-        var httpClient = new HttpClient(handlerMock.Object) { BaseAddress = new Uri(BaseUrl) };
+        var httpClient = new HttpClient(handlerMock.Object) { BaseAddress = new Uri(baseUrl ?? BaseUrl) };
         return new BridgeRestClient(httpClient);
     }
 
@@ -57,6 +58,41 @@ public class BridgeRestClientTests
         item.Name.ShouldBe(expectedItem.Name);
         item.Address.Street.ShouldBe(expectedItem.Address.Street);
         item.Address.City.ShouldBe(expectedItem.Address.City);
+    }
+
+    #endregion
+
+    #region Base address behaviour
+
+    [Theory]
+    [InlineData("https://test.com", "items/123", "https://test.com/items/123")]
+    [InlineData("https://test.com", "/items/123", "https://test.com/items/123")]
+    [InlineData("https://test.com/api/", "items/123", "https://test.com/api/items/123")]
+    [InlineData("https://test.com/api/v1/", "items/123", "https://test.com/api/v1/items/123")]
+    
+    // NOTE: Examples below have unexpected behaviour from the HttpClient, but there you go...
+    // See https://stackoverflow.com/questions/23438416/why-is-httpclient-baseaddress-not-working/23438417#23438417
+    [InlineData("https://test.com/WILL_BE_LOST_BECAUSE_OF_STARTING_SLASH_IN_RELATIVE_URL/", "/items/123", "https://test.com/items/123")]
+    [InlineData("https://test.com/api/WILL_BE_LOST_BECAUSE_OF_MISSING_TRAILING_SLASH", "items/123", "https://test.com/api/items/123")]
+    public async Task Note_How_Slashes_In_BaseAddress_And_RelativeUrl_Affects_The_Resulting_Url(string baseUrl, string relativeUrl, string expectedRequestUrl)
+    {
+        // Arrange
+        HttpRequestMessage? request = null;
+        var client = CreateHttpClientWithResponse(new HttpResponseMessage
+        {
+            StatusCode = HttpStatusCode.OK,
+            Content = new StringContent("{}", Encoding.UTF8, "application/json")
+        }, (r, _) =>
+        {
+            request = r;
+        }, baseUrl);
+
+        // Act
+        await client.GetAsync<object?>(relativeUrl);
+
+        // Assert
+        request.ShouldNotBeNull();
+        request.RequestUri.ShouldBe(new Uri(expectedRequestUrl));
     }
 
     #endregion
