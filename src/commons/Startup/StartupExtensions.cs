@@ -50,6 +50,11 @@ public static class StartupExtensions
     public static void UseStandardMiddleware(this IFunctionsWorkerApplicationBuilder app)
     {
         app.UseMiddleware<CreateCorrelationIdIfMissing>(); // Should be one of the first
-        app.UseMiddleware<ProblemDetailsMiddleware>();     // Depends on correlation id
+
+        app.UseWhen<ProblemDetailsMiddleware>(context =>
+        {
+            // We want to use this middleware only for http trigger invocations.
+            return context.FunctionDefinition.InputBindings.Values.First(a => a.Type.EndsWith("Trigger")).Type == "httpTrigger";
+        }); // Depends on correlation id
     }
 }
