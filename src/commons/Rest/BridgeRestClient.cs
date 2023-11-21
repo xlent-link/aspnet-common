@@ -1,9 +1,7 @@
 ﻿using System.Net;
 using System.Text;
-using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Unicode;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.Link.Bridge.Plugin.CSharp.Target.Abstract.Rest;
 using XlentLink.AspNet.Common.Exceptions;
@@ -23,7 +21,6 @@ public class BridgeRestClient : IBridgeRestClient
     {
         DefaultIgnoreCondition = JsonIgnoreCondition.Never,
         WriteIndented = true,
-        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
         Converters = { new JsonStringEnumConverter() }
     };
 
@@ -31,7 +28,6 @@ public class BridgeRestClient : IBridgeRestClient
     {
         AllowTrailingCommas = true,
         PropertyNameCaseInsensitive = true,
-        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
         Converters = { new JsonStringEnumConverter() }
     };
 
