@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.Link.Bridge.Plugin.CSharp.Target.Abstract.Rest;
 using XlentLink.AspNet.Common.Exceptions;
+using XlentLink.AspNet.Common.Logging;
 using JsonException = System.Text.Json.JsonException;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -12,8 +13,8 @@ namespace XlentLink.AspNet.Common.Rest;
 
 public class BridgeRestClient : IBridgeRestClient
 {
-    private readonly HttpClient _httpClient;
-    
+    public ISyncLogger? Logger { get; set; }
+    private readonly HttpClient _httpClient;    
     private readonly JsonSerializerOptions _serializeOptions;
     private readonly JsonSerializerOptions _deserializeOptions;
 
@@ -45,6 +46,7 @@ public class BridgeRestClient : IBridgeRestClient
 
     public async Task<TReturnValue> PostAsync<TReturnValue, TContent>(string url, TContent item, CancellationToken cancellationToken = default)
     {
+        Logger?.LogInformation($"Sending a HTTP request POST {_httpClient.BaseAddress}{url}");
         var requestContent = new StringContent(JsonSerializer.Serialize(item, _serializeOptions), Encoding.UTF8, "application/json");
         using var response = await _httpClient.PostAsync(url, requestContent, cancellationToken);
         await VerifyResponseAsync(url, response, cancellationToken);
@@ -54,6 +56,7 @@ public class BridgeRestClient : IBridgeRestClient
 
     public async Task<TReturnValue> GetAsync<TReturnValue>(string url, CancellationToken cancellationToken = default)
     {
+        Logger?.LogInformation($"Sending a HTTP request GET {_httpClient.BaseAddress}{url}");
         using var response = await _httpClient.GetAsync(url, cancellationToken);
         await VerifyResponseAsync(url, response, cancellationToken);
         var result = await ConvertResponseToResultAsync<TReturnValue>(response, cancellationToken);
@@ -62,6 +65,7 @@ public class BridgeRestClient : IBridgeRestClient
 
     public async Task<TReturnValue> PutAsync<TReturnValue, TContent>(string url, TContent item, CancellationToken cancellationToken = default)
     {
+        Logger?.LogInformation($"Sending a HTTP request PUT {_httpClient.BaseAddress}{url}");
         var requestContent = new StringContent(JsonSerializer.Serialize(item, _serializeOptions), Encoding.UTF8, "application/json");
         using var response = await _httpClient.PutAsync(url, requestContent, cancellationToken);
         await VerifyResponseAsync(url, response, cancellationToken);
@@ -71,6 +75,7 @@ public class BridgeRestClient : IBridgeRestClient
 
     public async Task DeleteAsync(string url, CancellationToken cancellationToken = default)
     {
+        Logger?.LogInformation($"Sending a HTTP request DELETE {_httpClient.BaseAddress}{url}");
         using var response = await _httpClient.DeleteAsync(url, cancellationToken);
         await VerifyResponseAsync(url, response, cancellationToken);
     }
