@@ -33,15 +33,18 @@
     <Description>Core library for aspnet related things</Description>
     <Copyright>Copyright ©2023 Xlent Link AB</Copyright>
     <PackageReleaseNotes>
-			1.1.1 Removed OpenApi
-			1.1.0 BridgeRestClient
-			1.0.1 Initial release
-		</PackageReleaseNotes>
-  </PropertyGroup>
-  <!-- Support for auto-publish alpha versions locally -->
-  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(VersionPrefix)', '(alpha|alfa)')) ">
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <LocalPackageOutputPathXlent Condition="'$(LocalPackageOutputPathXlent)'==''">c:\dev\local-nugets</LocalPackageOutputPathXlent>
-    <PackageOutputPath>$(LocalPackageOutputPathXlent)</PackageOutputPath>
-  </PropertyGroup>
+		1.1.3 Fix: Use correct response code when creating responses
+		1.1.1 Removed OpenApi
+		1.1.0 BridgeRestClient
+		1.0.1 Initial release
+	</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<!-- Support for auto-publish alpha versions locally -->
+	<PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(VersionPrefix)', '(alpha|alfa)')) ">
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<LocalPackageOutputPathXlent Condition="'$(LocalPackageOutputPathXlent)'==''">c:\dev\local-nugets</LocalPackageOutputPathXlent>
+		<PackageOutputPath>$(LocalPackageOutputPathXlent)</PackageOutputPath>
+	</PropertyGroup>
+
 </Project>

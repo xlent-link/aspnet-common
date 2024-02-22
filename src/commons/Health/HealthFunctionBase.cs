@@ -41,21 +41,21 @@ public class HealthFunctionBase
             HealthStatus.Unhealthy => HttpStatusCode.BadRequest,
             _ => HttpStatusCode.OK
         };
-        var response = req.CreateResponse(responseCode);
+        var response = req.CreateResponse();
         await response.WriteAsJsonAsync(new HealthResponse
         {
             Status = healthReport.Status,
             TotalDuration = healthReport.TotalDuration,
-            Entries = healthReport.Entries.ToDictionary(_ => _.Key, _ => new HealthResponseEntry
+            Entries = healthReport.Entries.ToDictionary(p => p.Key, p => new HealthResponseEntry
             {
-                Status = _.Value.Status,
-                Description = _.Value.Description,
-                Duration = _.Value.Duration,
-                Data = _.Value.Data.Any() ? _.Value.Data : null,
-                Tags = _.Value.Tags.Any() ? _.Value.Tags : null,
-                ExceptionMessage = _.Value.Exception?.Message, // Note: this whole Entries.Select thing is because Exception cannot be serialized
+                Status = p.Value.Status,
+                Description = p.Value.Description,
+                Duration = p.Value.Duration,
+                Data = p.Value.Data.Any() ? p.Value.Data : null,
+                Tags = p.Value.Tags.Any() ? p.Value.Tags : null,
+                ExceptionMessage = p.Value.Exception?.Message, // Note: this whole Entries.Select thing is because Exception cannot be serialized
             })
-        }, serializer: Serializer);
+        }, serializer: Serializer, statusCode: responseCode);
         return response;
     }
 }
