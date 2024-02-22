@@ -14,18 +14,18 @@ namespace XlentLink.AspNet.Common.Rest;
 public class BridgeRestClient : IBridgeRestClient
 {
     public ISyncLogger? Logger { get; set; }
-    private readonly HttpClient _httpClient;    
+    private readonly HttpClient _httpClient;
     private readonly JsonSerializerOptions _serializeOptions;
     private readonly JsonSerializerOptions _deserializeOptions;
 
-    private static readonly JsonSerializerOptions DefaultSerializeOptions = new()
+    public static readonly JsonSerializerOptions DefaultSerializeOptions = new()
     {
         DefaultIgnoreCondition = JsonIgnoreCondition.Never,
         WriteIndented = true,
-        Converters = { new JsonStringEnumConverter() }
+        //Converters = { new JsonStringEnumConverter() }
     };
 
-    private static readonly JsonSerializerOptions DefaultDeserializeOptions = new()
+    public static readonly JsonSerializerOptions DefaultDeserializeOptions = new()
     {
         AllowTrailingCommas = true,
         PropertyNameCaseInsensitive = true,
@@ -63,15 +63,18 @@ public class BridgeRestClient : IBridgeRestClient
         return result!;
     }
 
-    public async Task<TReturnValue> PutAsync<TReturnValue, TContent>(string url, TContent item, CancellationToken cancellationToken = default)
+    public async Task<TReturnValue> PutAsync<TReturnValue, TContent>(string url, TContent item, JsonSerializerOptions serializeOptions, CancellationToken cancellationToken = default)
     {
         Logger?.LogInformation($"Sending a HTTP request PUT {_httpClient.BaseAddress}{url}");
-        var requestContent = new StringContent(JsonSerializer.Serialize(item, _serializeOptions), Encoding.UTF8, "application/json");
+        var requestContent = new StringContent(JsonSerializer.Serialize(item, serializeOptions), Encoding.UTF8, "application/json");
         using var response = await _httpClient.PutAsync(url, requestContent, cancellationToken);
         await VerifyResponseAsync(url, response, cancellationToken);
         var result = await ConvertResponseToResultAsync<TReturnValue>(response, cancellationToken);
         return result;
     }
+
+    public async Task<TReturnValue> PutAsync<TReturnValue, TContent>(string url, TContent item, CancellationToken cancellationToken = default)
+        => await PutAsync<TReturnValue, TContent>(url, item, _serializeOptions, cancellationToken);
 
     public async Task DeleteAsync(string url, CancellationToken cancellationToken = default)
     {
@@ -107,6 +110,7 @@ public class BridgeRestClient : IBridgeRestClient
         {
             // The responseContent was not valid JSON
             // This will result in returning default
+            // TODO: Why not throw?
         }
         return result!;
     }
