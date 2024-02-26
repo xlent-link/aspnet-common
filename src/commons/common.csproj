@@ -8,9 +8,9 @@
   <ItemGroup>
     <!-- ReSharper disable once VulnerablePackage -->
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
-    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.0" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.1" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.22.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="1.16.1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="1.17.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
     <PackageReference Include="Nexus.Link.Bridge.Plugin.CSharp.Target.Abstract.V1" Version="1.1.4" />
   </ItemGroup>
