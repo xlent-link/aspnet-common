@@ -35,8 +35,12 @@ public class CreateCorrelationIdIfMissing : IFunctionsWorkerMiddleware
             return;
         }
 
-        await next.Invoke(context);
+        try
+        {
+            await next.Invoke(context);
 
-        context.GetHttpResponseData()?.Headers.Add(CorrelationIdConstants.HeaderName, correlationId);
+            context.GetHttpResponseData()?.Headers.Add(CorrelationIdConstants.HeaderName, correlationId);
+        }
+        catch (InvalidOperationException) { /* Something weird happens here after upgrade to .NET 8.0 */ }
     }
 }

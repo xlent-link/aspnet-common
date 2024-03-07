@@ -1,48 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-
-		<RootNamespace>XlentLink.AspNet.Common</RootNamespace>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<!-- ReSharper disable once VulnerablePackage -->
-		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
-		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
-		<PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="1.15.0" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
-		<PackageReference Include="Nexus.Link.Bridge.Plugin.CSharp.Target.Abstract.V1" Version="1.0.2" />
-	</ItemGroup>
-
-	<PropertyGroup>
-		<!-- Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<!-- Embed source files that are not tracked by the source control manager in the PDB -->
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
-		<DebugType>embedded</DebugType>
-		<IncludeSymbols>true</IncludeSymbols>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<PackageId>XlentLink.AspNet.Common</PackageId>
-		<VersionPrefix>1.1.3</VersionPrefix>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<Authors>XLENT Link</Authors>
-		<PackageProjectUrl>https://github.com/xlent-link/aspnet-common</PackageProjectUrl>
-		<PackageLanguage>en-US</PackageLanguage>
-		<Description>Core library for aspnet related things</Description>
-		<Copyright>Copyright ©2023 Xlent Link AB</Copyright>
-		<PackageReleaseNotes>
-			1.1.3 Fix: Use correct response code when creating responses
-			1.1.1 Removed OpenApi
-			1.1.0 BridgeRestClient
-			1.0.1 Initial release
-		</PackageReleaseNotes>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>XlentLink.AspNet.Common</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- ReSharper disable once VulnerablePackage -->
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.22.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="1.17.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
+    <PackageReference Include="Nexus.Link.Bridge.Plugin.CSharp.Target.Abstract.V1" Version="1.1.4" />
+  </ItemGroup>
+  <PropertyGroup>
+    <!-- Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
+    <DebugType>embedded</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>XlentLink.AspNet.Common</PackageId>
+    <VersionPrefix>1.1.1</VersionPrefix>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>XLENT Link</Authors>
+    <PackageProjectUrl>https://github.com/xlent-link/aspnet-common</PackageProjectUrl>
+    <PackageLanguage>en-US</PackageLanguage>
+    <Description>Core library for aspnet related things</Description>
+    <Copyright>Copyright ©2023 Xlent Link AB</Copyright>
+    <PackageReleaseNotes>
+		1.1.3 Fix: Use correct response code when creating responses
+		1.1.1 Removed OpenApi
+		1.1.0 BridgeRestClient
+		1.0.1 Initial release
+	</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<!-- Support for auto-publish alpha versions locally -->
