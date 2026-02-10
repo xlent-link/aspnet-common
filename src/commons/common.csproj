@@ -30,7 +30,7 @@
 
 	<PropertyGroup>
 		<PackageId>XlentLink.AspNet.Common</PackageId>
-		<VersionPrefix>1.1.3</VersionPrefix>
+		<VersionPrefix>1.1.4</VersionPrefix>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Authors>XLENT Link</Authors>
 		<PackageProjectUrl>https://github.com/xlent-link/aspnet-common</PackageProjectUrl>
@@ -38,6 +38,7 @@
 		<Description>Core library for aspnet related things</Description>
 		<Copyright>Copyright ©2023 Xlent Link AB</Copyright>
 		<PackageReleaseNotes>
+			1.1.4 Fix: Removes probematic and redundant code that tries to maipulate an old http respons
 			1.1.3 Fix: Use correct response code when creating responses
 			1.1.1 Removed OpenApi
 			1.1.0 BridgeRestClient
