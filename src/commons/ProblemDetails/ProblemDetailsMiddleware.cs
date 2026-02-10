@@ -59,10 +59,6 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
                 var response = request.CreateResponse();
                 await response.WriteAsJsonAsync(problemDetails, (HttpStatusCode)problemDetails.Status);
                 context.GetInvocationResult().Value = response;
-                if (context.GetHttpResponseData() != null)
-                {
-                    context.GetHttpResponseData()!.StatusCode = (HttpStatusCode)problemDetails.Status;
-                }
             }
         }
     }
