@@ -57,7 +57,7 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
             if (request != null)
             {
                 var response = request.CreateResponse();
-                await response.WriteAsJsonAsync(problemDetails, (HttpStatusCode)problemDetails.Status);
+                await response.WriteAsJsonAsync(problemDetails);
                 context.GetInvocationResult().Value = response;
             }
         }

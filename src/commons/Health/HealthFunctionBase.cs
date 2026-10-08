@@ -55,7 +55,7 @@ public class HealthFunctionBase
                 Tags = p.Value.Tags.Any() ? p.Value.Tags : null,
                 ExceptionMessage = p.Value.Exception?.Message, // Note: this whole Entries.Select thing is because Exception cannot be serialized
             })
-        }, serializer: Serializer, statusCode: responseCode);
+        }, serializer: Serializer);
         return response;
     }
 }

@@ -4,7 +4,6 @@ using Azure.Security.KeyVault.Secrets;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using XlentLink.AspNet.Common.Context;
@@ -25,9 +24,10 @@ public class ApplicationInsightsLoggerFactory : ISyncLoggerFactory
         string? connectionString = null;
         try
         {
-            if (!string.IsNullOrWhiteSpace(componentSettings.KeyVault?.Uri))
+            var keyVaultUri = componentSettings.KeyVault?.Uri;
+            if (!string.IsNullOrWhiteSpace(keyVaultUri))
             {
-                var client = new SecretClient(new Uri(componentSettings.KeyVault.Uri), new DefaultAzureCredential());
+                var client = new SecretClient(new Uri(keyVaultUri), new DefaultAzureCredential());
                 var secret = client.GetSecret("TelemetryConfigurationConnectionString");
                 connectionString = secret?.Value.Value;
             }
@@ -66,10 +66,6 @@ public class ApplicationInsightsLogger : AbstractSyncLogger
     {
         _contextValueProvider = contextValueProvider;
         _category = category;
-        _telemetryClient = new TelemetryClient(new TelemetryConfiguration
-        {
-            ApplicationIdProvider = new ApplicationInsightsApplicationIdProvider()
-        });
         _telemetryClient = new TelemetryClient(new TelemetryConfiguration
         {
             ConnectionString = connectionString
