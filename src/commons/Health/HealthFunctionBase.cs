@@ -13,7 +13,7 @@ namespace XlentLink.AspNet.Common.Health;
 /// </summary>
 public class HealthFunctionBase
 {
-    private readonly Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService _healthCheck;
+    private readonly HealthCheckService _healthCheck;
 
     private static readonly JsonObjectSerializer Serializer = new(new JsonSerializerOptions
     {
@@ -26,7 +26,7 @@ public class HealthFunctionBase
     /// <summary>
     /// Note: Use <see cref="HealthExtensions.AddHealthChecking"/> to setup dependency injection.
     /// </summary>
-    public HealthFunctionBase(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService healthCheck)
+    public HealthFunctionBase(HealthCheckService healthCheck)
     {
         _healthCheck = healthCheck;
     }
