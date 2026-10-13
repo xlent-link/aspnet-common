@@ -41,7 +41,7 @@ public class HealthFunctionBase
             HealthStatus.Unhealthy => HttpStatusCode.BadRequest,
             _ => HttpStatusCode.OK
         };
-        var response = req.CreateResponse();
+        var response = req.CreateResponse(responseCode);
         await response.WriteAsJsonAsync(new HealthResponse
         {
             Status = healthReport.Status,
