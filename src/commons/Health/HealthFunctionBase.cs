@@ -13,7 +13,7 @@ namespace XlentLink.AspNet.Common.Health;
 /// </summary>
 public class HealthFunctionBase
 {
-    private readonly Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService _healthCheck;
+    private readonly HealthCheckService _healthCheck;
 
     private static readonly JsonObjectSerializer Serializer = new(new JsonSerializerOptions
     {
@@ -26,7 +26,7 @@ public class HealthFunctionBase
     /// <summary>
     /// Note: Use <see cref="HealthExtensions.AddHealthChecking"/> to setup dependency injection.
     /// </summary>
-    public HealthFunctionBase(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService healthCheck)
+    public HealthFunctionBase(HealthCheckService healthCheck)
     {
         _healthCheck = healthCheck;
     }
@@ -41,7 +41,7 @@ public class HealthFunctionBase
             HealthStatus.Unhealthy => HttpStatusCode.BadRequest,
             _ => HttpStatusCode.OK
         };
-        var response = req.CreateResponse();
+        var response = req.CreateResponse(responseCode);
         await response.WriteAsJsonAsync(new HealthResponse
         {
             Status = healthReport.Status,
@@ -55,7 +55,7 @@ public class HealthFunctionBase
                 Tags = p.Value.Tags.Any() ? p.Value.Tags : null,
                 ExceptionMessage = p.Value.Exception?.Message, // Note: this whole Entries.Select thing is because Exception cannot be serialized
             })
-        }, serializer: Serializer, statusCode: responseCode);
+        }, serializer: Serializer);
         return response;
     }
 }

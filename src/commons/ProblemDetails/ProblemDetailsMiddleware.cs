@@ -56,8 +56,8 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
             var request = await context.GetHttpRequestDataAsync();
             if (request != null)
             {
-                var response = request.CreateResponse();
-                await response.WriteAsJsonAsync(problemDetails, (HttpStatusCode)problemDetails.Status);
+                var response = request.CreateResponse((HttpStatusCode)problemDetails.Status);
+                await response.WriteAsJsonAsync(problemDetails);
                 context.GetInvocationResult().Value = response;
             }
         }
@@ -65,6 +65,7 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
 
     private static void ResolveErrorType(ProblemDetails problemDetails, Exception e)
     {
+        var problemDetailsType = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/";
         // BusinessRuleException is used for business rules
         // ArgumentException is used for validation
         if (e is BusinessRuleException or ArgumentException)
@@ -73,7 +74,6 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
             problemDetails.Title = "Bad request, ";
             if (e is BusinessRuleException) problemDetails.Title += "business rule failure";
             else if (e is ArgumentException) problemDetails.Title += "validation error";
-            problemDetails.Type = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400";
         }
 
         // ResourceNotFoundException is used when resource can not be found
@@ -81,7 +81,6 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
         {
             problemDetails.Status = 404;
             problemDetails.Title = "Resource not found";
-            problemDetails.Type = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404";
         }
 
         // AuthenticationException is used for authentication failure
@@ -89,7 +88,6 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
         {
             problemDetails.Status = 401;
             problemDetails.Title = "Unauthorized";
-            problemDetails.Type = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401";
         }
 
         // TODO: 409 Conflict
@@ -100,7 +98,6 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
         {
             problemDetails.Status = 502;
             problemDetails.Title = "Bad gateway";
-            problemDetails.Type = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502";
         }
 
         // Everything else is considered Internal Server Error
@@ -108,7 +105,8 @@ public class ProblemDetailsMiddleware : IFunctionsWorkerMiddleware
         {
             problemDetails.Status = 500;
             problemDetails.Title = "Internal server error";
-            problemDetails.Type = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500";
         }
+
+        problemDetails.Type = $"{problemDetailsType}{problemDetails.Status}";
     }
 }
